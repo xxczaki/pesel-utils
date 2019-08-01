@@ -1,7 +1,5 @@
 'use strict';
 
-import isOdd from 'is-odd';
-
 const isValidPesel = (pesel: string): boolean => {
 	// Basic validation
 	if (pesel === null || pesel.length !== 11) {
@@ -39,11 +37,11 @@ const checkGender = (pesel: string): 'male' | 'female' => {
 
 	const genderIdentifier = arr[9];
 
-	if (isOdd(genderIdentifier)) {
-		return 'male';
+	if (genderIdentifier % 2 === 0) {
+		return 'female';
 	}
 
-	return 'female';
+	return 'male';
 };
 
 const getDateOfBirth = (pesel: string): string => {
@@ -53,11 +51,13 @@ const getDateOfBirth = (pesel: string): string => {
 	const month = Number(`${arr[2]}${arr[3]}`);
 	const day = `${arr[4]}${arr[5]}`;
 
-	// Get first digits of the year using month
+	// Get first digits of the year & format month
 	let firstDigitsofTheYear: number | undefined;
+	let formattedMonth: number = month;
 
 	if (month >= 81 && month <= 92) {
 		firstDigitsofTheYear = 18;
+		formattedMonth = month - 80;
 	}
 
 	if (month >= 1 && month <= 12) {
@@ -66,32 +66,16 @@ const getDateOfBirth = (pesel: string): string => {
 
 	if (month >= 21 && month <= 32) {
 		firstDigitsofTheYear = 20;
-	}
-
-	if (month >= 41 && month <= 52) {
-		firstDigitsofTheYear = 21;
-	}
-
-	if (month >= 61 && month <= 72) {
-		firstDigitsofTheYear = 22;
-	}
-
-	// Format month
-	let formattedMonth: number = month;
-
-	if (month >= 81 && month <= 92) {
-		formattedMonth = month - 80;
-	}
-
-	if (month >= 21 && month <= 32) {
 		formattedMonth = month - 20;
 	}
 
 	if (month >= 41 && month <= 52) {
+		firstDigitsofTheYear = 21;
 		formattedMonth = month - 40;
 	}
 
 	if (month >= 61 && month <= 72) {
+		firstDigitsofTheYear = 22;
 		formattedMonth = month - 60;
 	}
 
