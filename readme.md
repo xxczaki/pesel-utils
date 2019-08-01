@@ -7,7 +7,7 @@
 ## Highlights
 
 - Simple API
-- Lightweight
+- 0 dependencies
 - Well tested
 - Uses 4-step PESEL validation (lenght + year + month + checksum)
 - Written in TypeScript
