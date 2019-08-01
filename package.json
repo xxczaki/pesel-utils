@@ -1,6 +1,6 @@
 {
 	"name": "pesel-utils",
-	"version": "1.0.1",
+	"version": "1.0.2",
 	"description": "Bunch of utilities useful when working with PESEL numbers",
 	"main": "dist/index.js",
 	"module": "dist/index.esm.js",
