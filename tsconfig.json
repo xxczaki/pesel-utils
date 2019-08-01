@@ -1,0 +1,12 @@
+{
+	"extends": "@akepinski/tsconfig",
+	"compilerOptions": {
+		"outDir": "dist",
+		"target": "es5",
+		"sourceMap": false,
+		"incremental": false
+	},
+	"include": [
+		"src/**/*"
+	]
+}
