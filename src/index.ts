@@ -1,8 +1,12 @@
 'use strict';
 
+/**
+* @param {string} pesel PESEL you want to check.
+* @return {boolean} Whether the provided PESEL is valid or not.
+*/
 const isValidPesel = (pesel: string): boolean => {
 	// Basic validation
-	if (pesel === null || pesel.length !== 11) {
+	if (pesel.length !== 11) {
 		return false;
 	}
 
@@ -32,6 +36,10 @@ const isValidPesel = (pesel: string): boolean => {
 	return false;
 };
 
+/**
+* @param {string} pesel PESEL you want to check.
+* @return {('male'|'female')} Gender (`male` or `female`).
+*/
 const checkGender = (pesel: string): 'male' | 'female' => {
 	const arr = pesel.split('').map(e => Number(e));
 
@@ -44,6 +52,10 @@ const checkGender = (pesel: string): 'male' | 'female' => {
 	return 'male';
 };
 
+/**
+* @param {string} pesel PESEL you want to check.
+* @return {string} Date of birth, extracted from PESEL (in ISO 8601 format).
+*/
 const getDateOfBirth = (pesel: string): string => {
 	const arr = pesel.split('').map(e => Number(e));
 
