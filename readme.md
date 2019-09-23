@@ -2,7 +2,9 @@
 
 > Bunch of utilities useful when working with PESEL numbers
 
-[![Build Status](https://travis-ci.org/xxczaki/pesel-utils.svg?branch=master)](https://travis-ci.org/xxczaki/pesel-utils) [![XO code style](https://img.shields.io/badge/code_style-XO-5ed9c7.svg)](https://github.com/xojs/xo)
+[![Build Status](https://travis-ci.org/xxczaki/pesel-utils.svg?branch=master)](https://travis-ci.org/xxczaki/pesel-utils) 
+[![XO code style](https://img.shields.io/badge/code_style-XO-5ed9c7.svg)](https://github.com/xojs/xo) 
+[![install size](https://packagephobia.now.sh/badge?p=pesel-utils)](https://packagephobia.now.sh/result?p=pesel-utils)
 
 ## Highlights
 
