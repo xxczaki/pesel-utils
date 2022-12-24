@@ -1,16 +1,14 @@
-'use strict';
-
 /**
-* @param {string} pesel PESEL you want to check.
-* @return {boolean} Whether the provided PESEL is valid or not.
-*/
+ * @param {string} pesel - PESEL you want to check.
+ * @return {boolean} Whether the provided PESEL is valid or not.
+ */
 const isValidPesel = (pesel: string): boolean => {
 	// Basic validation
 	if (pesel.length !== 11) {
 		return false;
 	}
 
-	const arr = pesel.split('').map(e => Number(e));
+	const arr = pesel.split('').map(Number);
 
 	const year = Number(`${arr[0]}${arr[1]}`);
 	const month = Number(`${arr[2]}${arr[3]}`);
@@ -26,6 +24,7 @@ const isValidPesel = (pesel: string): boolean => {
 	}
 
 	const validate = ((9 * arr[0]) + (7 * arr[1]) + (3 * arr[2]) + arr[3] + (9 * arr[4]) + (7 * arr[5]) + (3 * arr[6]) + arr[7] + (9 * arr[8]) + (7 * arr[9]));
+
 	const lastDigit = Number(validate.toString().split('').pop());
 
 	// Checksum check
@@ -37,11 +36,11 @@ const isValidPesel = (pesel: string): boolean => {
 };
 
 /**
-* @param {string} pesel PESEL you want to check.
-* @return {('male'|'female')} Gender (`male` or `female`).
-*/
+ * @param {string} pesel - PESEL you want to check.
+ * @return {('male'|'female')} Gender (`male` or `female`).
+ */
 const checkGender = (pesel: string): 'male' | 'female' => {
-	const arr = pesel.split('').map(e => Number(e));
+	const arr = pesel.split('').map(Number);
 
 	const genderIdentifier = arr[9];
 
@@ -53,11 +52,15 @@ const checkGender = (pesel: string): 'male' | 'female' => {
 };
 
 /**
-* @param {string} pesel PESEL you want to check.
-* @return {string} Date of birth, extracted from PESEL (in ISO 8601 format).
-*/
-const getDateOfBirth = (pesel: string): string => {
-	const arr = pesel.split('').map(e => Number(e));
+ * @param {string} pesel - PESEL you want to check.
+ * @param {string} separator - default is `/`. If you want to get Array, set it to `null`.
+ * @return {string | array} Date of birth, extracted from PESEL in ISO 8601 format by default, also you can add custom separator. If separator is `null` it returns Array.
+ */
+const getDateOfBirth = (
+	pesel: string,
+	separator: string | null = '/',
+): string | string[] => {
+	const arr = pesel.split('').map(Number);
 
 	const year = `${arr[0]}${arr[1]}`;
 	const month = Number(`${arr[2]}${arr[3]}`);
@@ -91,11 +94,17 @@ const getDateOfBirth = (pesel: string): string => {
 		formattedMonth = month - 60;
 	}
 
-	return `${firstDigitsofTheYear}${year}/${formattedMonth < 10 ? `0${formattedMonth}` : formattedMonth}/${day}`;
+	const birthDate: string[] = [
+		`${firstDigitsofTheYear}${year}`,
+		`${formattedMonth < 10 ? `0${formattedMonth}` : formattedMonth}`,
+		`${day}`,
+	];
+
+	return separator ? birthDate.join(separator) : birthDate;
 };
 
 export {
 	isValidPesel,
 	checkGender,
-	getDateOfBirth
+	getDateOfBirth,
 };
