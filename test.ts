@@ -41,6 +41,15 @@ test('get date of birth (21st century)', t => {
 test('get date of birth (22nd century)', t => {
 	t.is(getDateOfBirth('00440345653'), '2100/04/03');
 });
+
 test('get date of birth (23rd century)', t => {
 	t.is(getDateOfBirth('00640345653'), '2200/04/03');
+});
+
+test('get date of birth (21st century) with custom separator', t => {
+	t.is(getDateOfBirth('13240376213', '-'), '2013/04/03');
+});
+
+test('get date of birth (22nd century) as array', t => {
+	t.is(getDateOfBirth('00440345653', null), ['2100', '04', '03']);
 });
