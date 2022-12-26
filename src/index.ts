@@ -3,38 +3,36 @@
  * @return {boolean} Whether the provided PESEL is valid or not.
  */
 const isValidPesel = (pesel: string): boolean => {
-	// Basic validation
-	if (pesel.length !== 11) {
+	// Basic validation.
+	if (!/^[0-9]{11}$/u.test(pesel)) {
 		return false;
 	}
 
-	const arr = pesel.split('').map(Number);
+	const monthWithCentury = Number(pesel.substring(2, 4));
 
-	const year = Number(`${arr[0]}${arr[1]}`);
-	const month = Number(`${arr[2]}${arr[3]}`);
-
-	// Year validation
-	if (year <= 0o0 || year > 99) {
+	// Century is encoded in month: https://en.wikipedia.org/wiki/PESEL.
+	if (!monthWithCentury || monthWithCentury % 20 > 12) {
 		return false;
 	}
 
-	// Month validation
-	if (month <= 0o0 || month > 72) {
+	// Validate day.
+	const day = Number(pesel.substring(4, 6));
+	if (!day || day < 1 || day > 31) {
 		return false;
 	}
 
-	const peselSum = ((9 * arr[0]) + (7 * arr[1]) + (3 * arr[2]) + arr[3] + (9 * arr[4]) + (7 * arr[5]) + (3 * arr[6]) + arr[7] + (9 * arr[8]) + (7 * arr[9]));
+	const times = [1, 3, 7, 9];
+	const digits: number[] = `${pesel}`
+		.split('')
+		.map(digit => Number.parseInt(digit, 10));
 
-	const peselCheck = 10;
-	const peselDiv = peselSum%peselCheck;
-	const peselLast = Number(pesel[10]);
+	const [dig11] = digits.splice(-1);
 
-	// Checksum check
-	if (peselDiv === peselLast) {
-		return true;
-	}
+	const control = digits.reduce((previousValue, currentValue, index) =>
+		previousValue + currentValue * times[index % 4] as number
+	) % 10;
 
-	return false;
+	return 10 - (control === 0 ? 10 : control) === dig11;
 };
 
 /**
@@ -105,8 +103,4 @@ const getDateOfBirth = (
 	return separator ? birthDate.join(separator) : birthDate;
 };
 
-export {
-	isValidPesel,
-	checkGender,
-	getDateOfBirth,
-};
+export {isValidPesel, checkGender, getDateOfBirth};
