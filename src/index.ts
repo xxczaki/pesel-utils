@@ -23,12 +23,14 @@ const isValidPesel = (pesel: string): boolean => {
 		return false;
 	}
 
-	const validate = ((9 * arr[0]) + (7 * arr[1]) + (3 * arr[2]) + arr[3] + (9 * arr[4]) + (7 * arr[5]) + (3 * arr[6]) + arr[7] + (9 * arr[8]) + (7 * arr[9]));
+	const peselSum = ((9 * arr[0]) + (7 * arr[1]) + (3 * arr[2]) + arr[3] + (9 * arr[4]) + (7 * arr[5]) + (3 * arr[6]) + arr[7] + (9 * arr[8]) + (7 * arr[9]));
 
-	const lastDigit = Number(validate.toString().split('').pop());
+	const peselCheck = 10;
+	const peselDiv = peselSum%peselCheck;
+	const peselLast = Number(pesel[10]);
 
 	// Checksum check
-	if (lastDigit === arr[10]) {
+	if (peselDiv === peselLast) {
 		return true;
 	}
 
