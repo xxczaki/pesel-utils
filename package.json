@@ -1,68 +1,68 @@
 {
-	"name": "pesel-utils",
-	"version": "1.0.4",
-	"description": "Bunch of utilities useful when working with PESEL numbers",
-	"main": "dist/index.js",
-	"module": "dist/index.esm.js",
-	"types": "dist/index.d.ts",
-	"files": [
-		"dist/index.js",
-		"dist/index.esm.js",
-		"dist/index.d.ts"
-	],
-	"author": "Antoni Kepinski <a@kepinski.me> (https://kepinski.me)",
-	"bugs": {
-		"url": "https://github.com/xxczaki/pesel-utils/issues"
-	},
-	"scripts": {
-		"prebuild": "del-cli dist",
-		"esm": "tsc --module esnext && cpy dist/index.js dist --rename index.esm.js",
-		"cjs": "tsc --module commonjs",
-		"build": "npm run esm && npm run cjs",
-		"test": "npm run build && xo && ava",
-		"prepublishOnly": "npm run build"
-	},
-	"engines": {
-		"node": ">=8"
-	},
-	"license": "MIT",
-	"repository": "xxczaki/pesel-utils",
-	"homepage": "https://github.com/xxczaki/pesel-utils",
-	"devDependencies": {
-		"@akepinski/tsconfig": "0.0.2",
-		"@typescript-eslint/eslint-plugin": "^1.13.0",
-		"@typescript-eslint/parser": "^1.13.0",
-		"ava": "^2.4.0",
-		"browser-env": "^3.2.6",
-		"cpy-cli": "^2.0.0",
-		"del-cli": "^3.0.0",
-		"eslint-config-xo-typescript": "^0.15.0",
-		"ts-node": "^8.4.1",
-		"typescript": "^3.6.3",
-		"xo": "*"
-	},
-	"sideEffects": false,
-	"ava": {
-		"babel": false,
-		"compileEnhancements": false,
-		"extensions": [
-			"ts"
-		],
-		"require": [
-			"ts-node/register"
-		]
-	},
-	"xo": {
-		"extends": "xo-typescript",
-		"envs": [
-			"browser"
-		],
-		"extensions": [
-			"ts"
-		],
-		"rules": {
-			"no-mixed-operators": "off",
-			"ava/no-ignored-test-files": "off"
-		}
-	}
+  "name": "pesel-utils",
+  "version": "1.0.4",
+  "description": "Bunch of utilities useful when working with PESEL numbers",
+  "main": "dist/index.js",
+  "module": "dist/index.esm.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist/index.js",
+    "dist/index.esm.js",
+    "dist/index.d.ts"
+  ],
+  "author": "Antoni Kepinski <a@kepinski.me> (https://kepinski.me)",
+  "bugs": {
+    "url": "https://github.com/xxczaki/pesel-utils/issues"
+  },
+  "scripts": {
+    "prebuild": "del-cli dist",
+    "esm": "tsc --module esnext && cpy dist/index.js dist --rename index.esm.js",
+    "cjs": "tsc --module commonjs",
+    "build": "npm run esm && npm run cjs",
+    "test": "npm run build && xo && ava",
+    "prepublishOnly": "npm run build"
+  },
+  "engines": {
+    "node": ">=8"
+  },
+  "license": "MIT",
+  "repository": "xxczaki/pesel-utils",
+  "homepage": "https://github.com/xxczaki/pesel-utils",
+  "devDependencies": {
+    "@akepinski/tsconfig": "0.0.2",
+    "@typescript-eslint/eslint-plugin": "^1.13.0",
+    "@typescript-eslint/parser": "^1.13.0",
+    "ava": "^2.4.0",
+    "browser-env": "^3.2.6",
+    "cpy-cli": "^2.0.0",
+    "del-cli": "^3.0.0",
+    "eslint-config-xo-typescript": "^0.15.0",
+    "ts-node": "^8.4.1",
+    "typescript": "^3.6.3",
+    "xo": "*"
+  },
+  "sideEffects": false,
+  "ava": {
+    "babel": false,
+    "compileEnhancements": false,
+    "extensions": [
+      "ts"
+    ],
+    "require": [
+      "ts-node/register"
+    ]
+  },
+  "xo": {
+    "extends": "xo-typescript",
+    "envs": [
+      "browser"
+    ],
+    "extensions": [
+      "ts"
+    ],
+    "rules": {
+      "no-mixed-operators": "off",
+      "ava/no-ignored-test-files": "off"
+    }
+  }
 }
